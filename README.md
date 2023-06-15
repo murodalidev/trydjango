@@ -1,2 +1,8 @@
 # trydjango
-qwe qwe
+## trydjango
+## trydjango
+
+
+*hello world*
+**hello world**
+_hello world_

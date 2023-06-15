@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}Article List{% endblock %}
+
+{% block content %}
+
+    <form method="get" role="search" class="">
+        <div class="row justify-content-end">
+            <div class="col-4">
+                <input class="form-control" autocomplete="off" type="search" placeholder="search..." name="q">
+            </div>
+            <div class="col-1">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row mt-4">
+        <div class="col-md-3 p-3">
+            <h3>Categories</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <a href="?cat=" class="text-decoration-none">All<span
+                            class="badge text-bg-secondary">{{ object_list_count }}</span></a>
+                </li>
+                {% for category in categories %}
+                    <li class="list-group-item">
+                        <a href="?cat={{ category.title }}" class="text-decoration-none">{{ category.title }}<span
+                                class="badge text-bg-secondary">{{ category.articles_count }}</span></a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <h3>Tags</h3>
+            {% for tag in tags %}
+                <span class="badge text-bg-dark">
+                    <a href="?tag={{ tag.title }}" class="text-light text-decoration-none">{{ tag.title }}</a>
+                </span>
+            {% endfor %}
+
+        </div>
+
+        <div class="col-md-9">
+            <div class="row">
+                {% if not object_list %}
+                    <h1>Nothing found</h1>
+                {% endif %}
+                {% for object in object_list %}
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 p-3">
+                        <div class="card">
+                            {% if object.image %}
+                                <img src="{{ object.image.url }}" class="card-img-top" alt="">
+                            {% else %}
+                                <img src="{% static 'image/noimg.png' %}" class="card-img-top" alt="...">
+                            {% endif %}
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a href="{% url 'articles:detail' object.slug %}"
+                                                          class="text-dark nav-link link-offset-1-hover">{{ object.title }}</a>
+                                </h3>
+                                <code>{{ object.category }}</code>
+                                <p class="card-text">{{ object.body|slice:"25" }}...</p>
+                                <div class="mb-3">
+                                    {% for tag in object.tags.all %}
+                                        <span class="mb-2">
+                                            <a href="">#{{ tag.title }}</a>
+                                        </span>
+                                    {% endfor %}
+
+                                </div>
+                                <a href="{% url 'articles:edit' object.id %}" class="btn btn-outline-info">edit</a>
+                                <a href="{% url 'articles:delete' object.id %}"
+                                   class="btn btn-outline-danger">delete</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            {% include 'articles/paginator.html' %}
+
+        </div>
+
+
+
+
+    </div>
+{% endblock %}

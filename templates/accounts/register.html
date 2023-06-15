@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="id_username" class="mb-2">Username: </label>
+                    {{ form.username }}
+                </div>
+                <div class="text-danger">
+                    {{ form.username.errors }}
+                </div>
+                <div class="mb-3">
+                    <label for="id_password1" class="mb-2">Password: </label>
+                    {{ form.password1 }}
+                </div>
+                {% if form.password1.errors %}
+                    <div class="text-danger">
+                        {{ form.password1.errors }}
+                    </div>
+                {% endif %}
+                <div class="mb-3">
+                    <label for="id_password2" class="mb-2">Confirm password: </label>
+                    {{ form.password2 }}
+                </div>
+                {% if form.password2.errors %}
+                    <div class="text-danger">
+                        {{ form.password2.errors }}
+                    </div>
+                {% endif %}
+                <div class="mb-3">
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button type="button" class="btn btn-info text-light" data-bs-toggle="modal" data-bs-target="#rulesModal">
+                        Rules
+                    </button>
+                </div>
+                <div class="mb-3">
+                    I have already an account, <a href="{% url 'accounts:login' %}">login</a>.
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade " id="rulesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Password rules</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {{ form.password1.help_text }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

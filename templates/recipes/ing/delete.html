@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                {% csrf_token %}
+
+                <h3 class="text-secondary">Are you sure to delele "{{ object.title }}"?</h3>
+                <p>Are you sure you want to delete the selected recipe? All of the following objects and their related
+                    items will be deleted:</p>
+
+                <button class="btn btn-danger mt-3" type="submit">Yes, i'm sure</button>
+                <a class="btn btn-secondary mt-3" href="{% url 'recipes:detail' object.id %}">No, take me back</a>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

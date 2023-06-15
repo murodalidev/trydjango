@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        <h1>Are you sure to logout?</h1>
+        <div class="button-group">
+            <a class="btn btn-secondary" href="{% url 'articles:list' %}" type="button">No</a>
+            <button class="btn btn-danger" href="{% url 'articles:list' %}" type="submit">Yes</button>
+        </div>
+    </form>
+
+{% endblock %}

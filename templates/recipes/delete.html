@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <form method="post">
+                {% csrf_token %}
+
+                <h3 class="text-secondary">Are you sure to delele "{{ object.title }}"?</h3>
+                <p>Are you sure you want to delete the selected recipe? All of the following objects and their related
+                    items will be deleted:</p>
+                <h3 class="mt-3"><strong>Summary</strong></h3>
+                <ul>
+                    {% for related_field in related_fields %}
+                        <li>{{ related_field.name }}: {{ related_field.objects.count }}</li>
+                    {% endfor %}
+
+                </ul>
+                <h3 class="mt-3"><strong>Objects</strong></h3>
+                <ul>
+                    {% for related_field in related_fields %}
+                        {% for object in related_field.objects %}
+                            <li>{{ related_field.name }}: {{ object }}</li>
+                        {% endfor %}
+
+                    {% endfor %}
+                </ul>
+                <button class="btn btn-danger mt-3" type="submit">Yes, i'm sure</button>
+                <a class="btn btn-secondary mt-3" href="{% url 'recipes:detail' object.id %}">No, take me back</a>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

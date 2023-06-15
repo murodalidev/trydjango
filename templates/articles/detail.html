@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block header %}Article Detail{% endblock %}
+
+{% block content %}
+<div>
+    {% if object.image %}
+        <div>
+            <img src="{{ object.image.url }}" alt="" style="width: 250px">
+        </div>
+    {% endif %}
+    <h3>{{ object.title }}</h3>
+    <p>{{ object.body }}</p>
+    <code>
+        created_date: {{ object.created_date }}
+    </code>
+    <br>
+    <code>
+        modified_date: {{ object.modified_date }}
+    </code>
+
+    <div class="mt-3">
+        <span>
+            <a type="button" class="btn btn-outline-info" href="{% url 'articles:edit' object.id %}">Edit</a>
+        </span>
+        <span>
+            <a type="button" class="btn btn-outline-danger" href="{% url 'articles:delete' object.id %}">Delete</a>
+        </span>
+    </div>
+</div>
+{% endblock %}

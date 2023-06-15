@@ -1,0 +1,95 @@
+* {
+    font-family: arial;
+}
+body {
+    margin: 0;
+}
+.logo_img  {
+    width: 100px;
+}
+
+#article_body {
+    /*padding: 5px 10px;*/
+}
+
+#article_title{
+    /*padding: 5px 10px;*/
+}
+
+.badge {
+    margin-left: 5px;
+}
+.errorlist > li {
+    color: #842029;
+}
+.hide {
+    display: none;
+    transition: 0.3s;
+}
+
+/*header {*/
+/*    background-color: #9FBDC1;*/
+/*    padding: 20px 10px;*/
+/*}*/
+/*header .logo_text {*/
+/*    font-size: 22px;*/
+/*    margin-bottom: 15px;*/
+/*}*/
+/*.article_body {*/
+/*    padding: 20px 10px;*/
+/*}*/
+/*form input[type=text] {*/
+/*    border: 0;*/
+/*    border-bottom: 1px solid;*/
+/*    padding: 5px 0;*/
+/*}*/
+/*form input[type=text]:focus {*/
+/*    outline: 0;*/
+/*    transition: .3s;*/
+/*    padding-left: 5px;*/
+/*}*/
+/*form textarea {*/
+/*    border: 0;*/
+/*    border-bottom: 1px solid;*/
+/*}*/
+/*form textarea:focus {*/
+/*    outline: 0;*/
+/*    transition: .3s;*/
+/*    padding-left: 5px;*/
+/*}*/
+/*form button[type=submit] {*/
+/*    background-color: #0B61B6;*/
+/*    color: #ffffff;*/
+/*    padding: 10px 20px;*/
+/*    font-size: 16px;*/
+/*    border: 0;*/
+/*    border-radius: 8px;*/
+/*    cursor: pointer;*/
+/*}*/
+/*form button[type=submit]:hover {*/
+/*    transition: .5s;*/
+/*    box-shadow: 8px 10px 5px #ccc;*/
+/*}*/
+/*.delete_btn {*/
+/*    background-color: #E94343 !important;*/
+/*}*/
+
+/*.messages div {*/
+/*    padding: 10px 20px;*/
+/*    color: #fff;*/
+/*    font-weight: bolder;*/
+/*    font-size: 16px;*/
+/*}*/
+
+/*.messages div.success {*/
+/*    background-color: #07B937;*/
+/*}*/
+/*.messages div.danger {*/
+/*    background-color: #E94343;*/
+/*}*/
+/*.messages div.primary {*/
+/*    background-color: #195CE2;*/
+/*}*/
+/*.messages div.warning {*/
+/*    background-color: #D4D85B;*/
+/*}*/

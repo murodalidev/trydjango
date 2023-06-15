@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block header %}Article Update Form{% endblock %}
+
+{% block content %}
+<div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div>
+                <button class="btn btn-primary" type="submit">Save</button>
+                <a type="button" class="btn btn-secondary" href="{% url 'articles:detail' obj.id %}">Cancel</a>
+        </div>
+
+    </form>
+
+</div>
+{% endblock %}

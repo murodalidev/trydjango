@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block header %}Article List{% endblock %}
+
+{% block content %}
+
+    <div class="row mt-4">
+        <div class="col-md-3 p-3">
+            <div class="d-grid gap-2 mb-3">
+                <a class="btn btn-primary" href="{% url 'recipes:create' %}" type="button">+ Recipe</a>
+            </div>
+            <h3>Tags</h3>
+            <span class="badge text-bg-dark">
+                    <a href="." class="text-light text-decoration-none">all</a>
+                </span>
+            {% for tag in tags %}
+                <span class="badge text-bg-dark">
+                    <a href="?tag={{ tag.title }}" class="text-light text-decoration-none">{{ tag.title }}</a>
+                </span>
+            {% endfor %}
+
+        </div>
+
+        <div class="col-md-9">
+            <div class="row">
+                {% if not object_list %}
+                    <h1>Nothing found</h1>
+                {% endif %}
+                {% for object in object_list %}
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 p-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title"><a href="{% url 'recipes:detail' object.id %}"
+                                                          class="text-dark nav-link link-offset-1-hover">{{ object.title }}</a>
+                                </h3>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">{{ object.author }}</h6>
+                                <code>{{ object.category }}</code>
+                                <p class="card-text">{{ object.description|slice:"25" }}...</p>
+                                <div class="mb-3">
+                                    {% for tag in object.tags.all %}
+                                        <span class="mb-2">
+                                            <a href="">#{{ tag.title }}</a>
+                                        </span>
+                                    {% endfor %}
+
+                                </div>
+
+                                <a href="{% url 'recipes:edit' object.id %}" class="btn btn-outline-info {% if request.user != object.author %}disabled{% endif %}">edit</a>
+                                <a href="{% url 'recipes:delete' object.id %}"
+                                   class="btn btn-outline-danger {% if request.user != object.author %}disabled{% endif %}">delete</a>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

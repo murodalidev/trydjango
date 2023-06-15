@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}Article Create Django Form{% endblock %}
+
+{% block content %}
+<div>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div>
+            <p>
+                <button type="submit" >Save</button>
+            </p>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
+

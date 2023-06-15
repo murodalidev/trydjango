@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block header %}Article Create{% endblock %}
+
+{% block content %}
+<div>
+    {% if created %}
+        <div>
+            <h3>{{ obj.title }}</h3>
+            <p>{{ obj.body }}</p>
+            <code>{{ obj.created_date }}</code>
+        </div>
+    {% else %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <p>
+                <label for="article_title">
+                    <b>Title:</b>
+                </label>
+            </p>
+            <input type="text" name="title" id="article_title" placeholder="title..."  required>
+        </div>
+        <div>
+            <p>
+                <label for="image_id"><b>Image:</b></label>
+                <input type="file" id="image_id" name="image">
+            </p>
+        </div>
+        <div>
+            <p>
+                <label for="article_body">
+                    <b>Body:</b>
+                </label>
+            </p>
+            <textarea name="body" id="article_body" cols="50" rows="3" placeholder="body..." required></textarea>
+        </div>
+        <div>
+            <p>
+                <button type="submit" >Save</button>
+            </p>
+        </div>
+
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

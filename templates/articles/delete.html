@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block header %}Article Delete{% endblock %}
+
+{% block content %}
+<div>
+    <h3>Are you sure to delete "{{ object.title }}"?</h3>
+
+    <form method="post">
+        {% csrf_token %}
+        <p>
+            <span>
+                <a href="{% url 'articles:list' %}" class="btn btn-secondary">Cancel</a>
+            </span>
+            <span>
+               <button type="submit" class="btn btn-danger">Delete</button>
+            </span>
+        </p>
+    </form>
+
+</div>
+{% endblock %}
